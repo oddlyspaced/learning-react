@@ -8,6 +8,9 @@
 
 import React from 'react';
 import type {Node} from 'react';
+
+import Task from './Task';
+
 import {
   SafeAreaView,
   ScrollView,
@@ -26,36 +29,19 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-const Section = ({children, title}): Node => {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-};
-
 const App: () => Node = () => {
   return (
     <View style={styles.container}>
-      
+      {/* Todays Tasks */}
+      <View style={styles.tasksWrapper}>
+        <Text style={styles.sectionTitle}>Today's Tasks</Text>
+        <View style={styles.items}>
+          {/* This is where the tasks will go */}
+          <Task text={'TA'} />
+          <Task text={'TA'} />
+          <Task text={'TA'} />
+        </View>
+      </View>
     </View>
   );
 };
@@ -63,8 +49,20 @@ const App: () => Node = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff'
-  }
+    backgroundColor: '#E8EAED',
+  },
+  tasksWrapper: {
+    paddingTop: 80,
+    paddingHorizontal: 20,
+  },
+  sectionTitle: {
+    color: '#000',
+    fontSize: 24,
+    fontWeight: 'bold',
+  },
+  items: {
+    marginTop: 30,
+  },
 });
 
 export default App;
